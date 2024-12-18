@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: acc-fe-be
+  namespace: pnt-quiz
+spec:
+  podSelector:
+    matchLabels:
+      app: be
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: fe
+      ports:
+        - protocol: TCP
+          port: 8877

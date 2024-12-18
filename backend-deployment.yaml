@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: be-deploy
+  namespace: pnt-quiz
+  labels:
+    app: be-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: be-deploy
+          image: gabiomega/pnt:latest
+          ports: 
+            - containerPort: 8877
